@@ -15,5 +15,5 @@
  - [oEmbed providers](http://www.oembed.com/#section7.1)
 
 ## TODO
- - add more providers. For now there are only youtube and vimeo
  - add support of passing API key for embedly
+ - cache results (or not?)

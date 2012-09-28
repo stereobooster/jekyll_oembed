@@ -1,35 +1,33 @@
-# jekyll_oembed 0.0.1
+# jekyll_oembed 0.0.2
 # https://github.com/stereobooster/jekyll_oembed
 
 begin
   require 'oembed'
   require 'shellwords'
 
+  OEmbed::Providers.register_all
+
   module Jekyll
     class OEmbedTag < Liquid::Tag
 
       def initialize(tag_name, text, tokens)
         super
-        @params = text.shellsplit
-        @url = @params.shift
-        @params = Hash[*@params.map{|val| val.split('=')}.flatten]
+        @text = text
       end
 
       def render(context)
-        OEmbed::Providers.register(OEmbed::Providers::Youtube)
-        OEmbed::Providers.register(OEmbed::Providers::Vimeo)
-        begin
-          resource = OEmbed::Providers.get(@url, @params)
-          # TODO: cache results
-          # resource.type
-          # resource.provider.name
-          # resource.video?
-          # resource.thumbnail_url
-          resource.html
-        rescue OEmbed::NotFound
-          warn "No embeddable content at #{@url}"
-          "<a href='#{@url}'>#{@url}</a>"
-        end
+        text = Liquid::Template.parse(@text).render context
+
+        params = text.shellsplit
+        url = params.shift
+        params = Hash[*params.map{|val| val.split('=')}.flatten]
+
+        resource = OEmbed::Providers.get(url, params)
+        # resource.video?, resource.thumbnail_url
+        "<div class='oembed #{resource.type}'>#{resource.html}</div>"
+      rescue OEmbed::NotFound
+        warn "No embeddable content at #{url}"
+        "<a href='#{url}'>#{url}</a>"
       end
     end
   end
