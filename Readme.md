@@ -9,7 +9,7 @@
 ### Bundler
 Add this line to your application's `Gemfile`:
 ```ruby
-gem 'jekyll-oembed'
+gem 'jekyll-oembed', :require => 'jekyll_oembed'
 ```
 
 And then execute:
@@ -42,7 +42,7 @@ Create the following plugin in your projects _plugins directory.
 
 ```ruby
 # _plugins/jekyll-oembed-plugin.rb
-require 'jekyll-oembed'
+require 'jekyll_oembed'
 ```
 ## Resources
  - [oEmbed providers](http://www.oembed.com/#section7.1)
