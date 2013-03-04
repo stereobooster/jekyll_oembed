@@ -1,5 +1,3 @@
-source :rubygems
+source 'https://rubygems.org'
 
-gem "jekyll"
-
-gem "oembed"
+gemspec
