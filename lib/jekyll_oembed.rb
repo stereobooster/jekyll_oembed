@@ -21,12 +21,20 @@ module Jekyll
       resource = OEmbed::Providers.get(url, params)
       html = resource.html
 
-      if url =~ /:\/\/(www.youtube.com|youtu.be)\//
+      if url =~ /:\/\/((.+\.)?(youtube\.com|youtu\.be))\//
         %w{width height}.each do |name|
-           if params[name]
+          if params[name]
             html.gsub! Regexp.new(name+'="\\d+'), name+'="'+params[name]
           end
-         end
+        end
+      end
+
+      if url =~ /:\/\/((.+\.)?flickr\.com)\//
+        html.gsub! /\/>\z/, "width='"+resource.width+"' height='"+resource.height+"' />"
+      end
+
+      if params['link']
+        html = "<a href='#{url}'>#{html}</a>";
       end
 
       # resource.video?, resource.thumbnail_url
