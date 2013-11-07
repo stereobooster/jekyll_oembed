@@ -33,6 +33,10 @@ module Jekyll
         html.gsub! /\/>\z/, "width='"+resource.width+"' height='"+resource.height+"' />"
       end
 
+      if params['link']
+        html = "<a href='#{url}'>#{html}</a>";
+      end
+
       # resource.video?, resource.thumbnail_url
       "<div class='oembed #{resource.type}'>#{html}</div>"
     rescue OEmbed::NotFound
