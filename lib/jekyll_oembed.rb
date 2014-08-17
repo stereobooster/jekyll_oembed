@@ -3,6 +3,7 @@ require 'shellwords'
 require 'digest/md5'
 
 OEmbed::Providers.register_all
+OEmbed::Providers::Youtube.endpoint += "?scheme=https"
 
 module Jekyll
   class OEmbedTag < Liquid::Tag
