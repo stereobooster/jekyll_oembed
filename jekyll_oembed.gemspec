@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |gem|
   gem.name          = "jekyll-oembed"
-  gem.version       = '0.0.1'
+  gem.version       = '0.0.2'
   gem.authors       = ["stereobooster"]
   gem.email         = ["stereobooster@gmail.com"]
   gem.description   = %q{Provides an oembed liquid tag for Jekyll}
@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_dependency "jekyll"
-  gem.add_dependency "ruby-oembed", "0.8.8"
+  gem.add_dependency "ruby-oembed", "0.8.14"
 
   gem.add_development_dependency "rake"
 
