@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_dependency "jekyll"
-  gem.add_dependency "ruby-oembed", "~> 0.9.0"
+  gem.add_dependency "ruby-oembed", "~> 0.13.0"
 
   gem.add_development_dependency "rake"
 
